@@ -38,7 +38,8 @@ sudo systemctl enable node_exporter
 2. Ознакомьтесь с опциями node_exporter и выводом `/metrics` по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти, диску и сети.  
 ![img_1.png](img_1.png)
 
-```CPU: system, user покажут время, использованное системой и программами; слишком высокий steal будет означать, что гипервизор перегружен и процессор занят другими ВМ; iowait - поможет отследить, всё ли в порядке с дисковой системой.
+```
+CPU: system, user покажут время, использованное системой и программами; слишком высокий steal будет означать, что гипервизор перегружен и процессор занят другими ВМ; iowait - поможет отследить, всё ли в порядке с дисковой системой.
 # TYPE node_cpu_seconds_total counter`
 node_cpu_seconds_total{cpu="0",mode="idle"} 27.36
 node_cpu_seconds_total{cpu="0",mode="iowait"} 0.52
@@ -56,8 +57,8 @@ node_cpu_seconds_total{cpu="1",mode="softirq"} 0.21
 node_cpu_seconds_total{cpu="1",mode="steal"} 0
 node_cpu_seconds_total{cpu="1",mode="system"} 2.66
 node_cpu_seconds_total{cpu="1",mode="user"} 2.34
-MEM: MemTotal - количество памяти; MemFree и MemAvailable - свободная и доступная память; SwapTotal, SwapFree, SwapCached - своп, если слишком много занято -- RAM не хватает.
 
+MEM: MemTotal - количество памяти; MemFree и MemAvailable - свободная и доступная память; SwapTotal, SwapFree, SwapCached - своп, если слишком много занято -- RAM не хватает.
 # TYPE node_memory_MemAvailable_bytes gauge
 node_memory_MemAvailable_bytes 7.43829504e+08
 # TYPE node_memory_MemFree_bytes gauge
@@ -70,8 +71,8 @@ node_memory_SwapCached_bytes 0
 node_memory_SwapFree_bytes 1.027600384e+09
 # TYPE node_memory_SwapTotal_bytes gauge
 node_memory_SwapTotal_bytes 1.027600384e+09
-DISK: size_bytes и avail_bytes покажут объём и свободное место; readonly=1 может говорить о проблемах ФС, из-за чего она перешла в режим только для чтения; io_now - интенсивность работы с диском в текущий момент.
 
+DISK: size_bytes и avail_bytes покажут объём и свободное место; readonly=1 может говорить о проблемах ФС, из-за чего она перешла в режим только для чтения; io_now - интенсивность работы с диском в текущий момент.
 # TYPE node_filesystem_avail_bytes gauge
 node_filesystem_avail_bytes{device="/dev/mapper/vgvagrant-root",fstype="ext4",mountpoint="/"} 6.0764639232e+10
 # TYPE node_filesystem_readonly gauge
@@ -80,8 +81,8 @@ node_filesystem_readonly{device="/dev/mapper/vgvagrant-root",fstype="ext4",mount
 node_filesystem_size_bytes{device="/dev/mapper/vgvagrant-root",fstype="ext4",mountpoint="/"} 6.5827115008e+10
 # TYPE node_disk_io_now gauge
 node_disk_io_now{device="sda"} 0
-NET: carrier_down, carrier_up - если много, значит проблема с физическим подключением; info - общая информация по интерфейсу; mtu_bytes - может быть важно для диагностики потерь или если трафик хостов не проходит через маршрутизатор; receive_errs_total, transmit_errs_total, receive_packets_total, transmit_packets_total - ошибки передачи, в зависимости от объёма, вероятно какие-то проблемы сети или с хостом
 
+NET: carrier_down, carrier_up - если много, значит проблема с физическим подключением; info - общая информация по интерфейсу; mtu_bytes - может быть важно для диагностики потерь или если трафик хостов не проходит через маршрутизатор; receive_errs_total, transmit_errs_total, receive_packets_total, transmit_packets_total - ошибки передачи, в зависимости от объёма, вероятно какие-то проблемы сети или с хостом
 # TYPE node_network_carrier_down_changes_total counter
 node_network_carrier_down_changes_total{device="eth0"} 1
 # TYPE node_network_carrier_up_changes_total counter
